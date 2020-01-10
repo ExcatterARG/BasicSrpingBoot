@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>WebSocket</title>
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/main.css" rel="stylesheet">
-    <script src="/webjars/jquery/jquery.min.js"></script>
-    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
     <script type="text/javascript">
         var stompClient = null;
@@ -21,12 +20,12 @@
             $("#greetings").html("");
         }
         function connect() {
-            var socket = new SockJS('/topic');
+            var socket = new SockJS('/websocket-demo');
             stompClient = Stomp.over(socket);
             stompClient.connect({}, function (frame) {
                 setConnected(true);
                 console.log('Connected: ' + frame);
-                stompClient.subscribe('/topic/greetings', function (greeting) {
+                stompClient.subscribe('/topic/user', function (greeting) {
                     showGreeting(JSON.parse(greeting.body).content);
                 });
             });

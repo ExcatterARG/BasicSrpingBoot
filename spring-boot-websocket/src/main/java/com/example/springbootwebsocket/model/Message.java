@@ -1,15 +1,15 @@
 package com.example.springbootwebsocket.model;
 
-public class UserResponse {
+public class Message {
     private String content;
 
-    public UserResponse(){
+    public Message(){
 
-    };
+    }
 
-    public UserResponse(String content){
+    public Message(String content){
         this.content = content;
-    };
+    }
 
     public String getContent(){
         return this.content;
