@@ -36,8 +36,8 @@ public class AccountServiceImpl implements AccountService {
         Account account = new Account();
         account.setCurrency(accountDTO.getCurrency());
         account.setBalance(accountDTO.getBalance());
-        Account newAccount = this.accountRepository.save(account);
-        accountDTO.setAccountNumber(newAccount.getId());
+        this.accountRepository.save(account);
+        accountDTO.setAccountNumber(account.getId());
         return accountDTO;
     }
 
